@@ -1,4 +1,9 @@
 import javax.swing.*;
+import java.awt.*;
+
+//make a list of the changes you still need to implement
+//Write JavaDoc
+//UML diagrams?
 
 public class FortuneTellerFrame extends JFrame
 {
@@ -6,6 +11,8 @@ public class FortuneTellerFrame extends JFrame
     JPanel titlePnl;
     JPanel fortunesPnl;
     JPanel controlPnl;
+
+    Font fortunePnlFont;
 
     JLabel titleLbl;
     ImageIcon fortuneIcon;
@@ -35,7 +42,13 @@ public class FortuneTellerFrame extends JFrame
 
     private void createFortunesPnl()
     {
+        fortunesPnl = new JPanel();
+        fortunePnlFont = new Font("Verdana", Font.PLAIN, 14);
+        fortuneTA = new JTextArea(10, 25);
+        fortuneTA.setFont(fortunePnlFont);
+        scroller = new JScrollPane(fortuneTA);
 
+        fortunesPnl.add(scroller);
     }
 
     private void createControlPnl()
