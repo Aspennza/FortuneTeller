@@ -1,7 +1,7 @@
-public class Main
+public class FortuneTellerViewer
 {
     public static void main(String[] args)
     {
-        
+
     }
 }
