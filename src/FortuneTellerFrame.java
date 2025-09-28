@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
+import java.util.Random;
 
 //make a list of the changes you still need to implement
 //Come back to writing fortunes into the ArrayList; return to the Swing GUI 02 video at 30 minutes
@@ -25,8 +26,14 @@ public class FortuneTellerFrame extends JFrame
 
     JButton fortuneBtn;
     ArrayList<String> fortuneOptions;
+    Random gen = new Random();
+    int fortuneIndex = 0;
+    String selectedFortune;
+    Integer previousIndex;
 
     JButton quitBtn;
+
+    int fortuneCount = 0;
 
     public FortuneTellerFrame()
     {
@@ -75,6 +82,7 @@ public class FortuneTellerFrame extends JFrame
 
     private void createTitlePnl()
     {
+        //Need to create a font
         titlePnl = new JPanel();
         fortuneIcon = new ImageIcon("src/Fortune_Teller_Image.jpg");
         titleLbl = new JLabel("Fortune Teller", fortuneIcon, JLabel.CENTER);
@@ -87,7 +95,7 @@ public class FortuneTellerFrame extends JFrame
     {
         fortunesPnl = new JPanel();
         fortunePnlFont = new Font("Verdana", Font.PLAIN, 14);
-        fortuneTA = new JTextArea(10, 25);
+        fortuneTA = new JTextArea(10, 50);
         fortuneTA.setEditable(false);
         fortuneTA.setFont(fortunePnlFont);
         scroller = new JScrollPane(fortuneTA);
@@ -97,6 +105,7 @@ public class FortuneTellerFrame extends JFrame
 
     private void createControlPnl()
     {
+        //Need to create a font
         controlPnl = new JPanel();
         controlPnl.setLayout(new GridLayout(1, 2));
 
@@ -106,7 +115,19 @@ public class FortuneTellerFrame extends JFrame
         controlPnl.add(fortuneBtn);
         fortuneBtn.addActionListener((ActionEvent ae) ->
         {
+                fortuneCount++;
 
+                fortuneIndex = gen.nextInt(14);
+
+                while (previousIndex != null && previousIndex == fortuneIndex)
+                {
+                    fortuneIndex = gen.nextInt(14);
+                }
+
+                selectedFortune = fortuneOptions.get(fortuneIndex);
+
+                fortuneTA.append(fortuneCount + ") " + selectedFortune + "\n");
+                previousIndex = fortuneIndex;
         });
 
         controlPnl.add(quitBtn);
