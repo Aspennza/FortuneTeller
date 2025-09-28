@@ -16,7 +16,9 @@ public class FortuneTellerFrame extends JFrame
     JPanel fortunesPnl;
     JPanel controlPnl;
 
+    Font titlePnlFont;
     Font fortunePnlFont;
+    Font controlPnlFont;
 
     JLabel titleLbl;
     ImageIcon fortuneIcon;
@@ -37,15 +39,10 @@ public class FortuneTellerFrame extends JFrame
 
     public FortuneTellerFrame()
     {
-        fortuneOptions = new ArrayList<>();
-
         Toolkit kit = Toolkit.getDefaultToolkit();
         Dimension screenSize = kit.getScreenSize();
         int screenHeight = screenSize.height;
         int screenWidth = screenSize.width;
-
-        setSize(screenWidth * 3/4, screenHeight * 3/4);
-        setLocationRelativeTo(null);
 
         mainPnl = new JPanel();
         mainPnl.setLayout(new BorderLayout());
@@ -59,6 +56,7 @@ public class FortuneTellerFrame extends JFrame
         createControlPnl();
         mainPnl.add(controlPnl, BorderLayout.SOUTH);
 
+        fortuneOptions = new ArrayList<>();
         fortuneOptions.add("In the next two days, you will meet a lucky cat.");
         fortuneOptions.add("In one month, you will encounter an ice cream truck.");
         fortuneOptions.add("Within the next 5 months, you will be headbutted by a goat.");
@@ -76,16 +74,19 @@ public class FortuneTellerFrame extends JFrame
 
         add(mainPnl);
         setTitle("Fortune Teller");
+        setSize(screenWidth * 3/4, screenHeight * 3/4);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
     }
 
     private void createTitlePnl()
     {
-        //Need to create a font
         titlePnl = new JPanel();
         fortuneIcon = new ImageIcon("src/Fortune_Teller_Image.jpg");
         titleLbl = new JLabel("Fortune Teller", fortuneIcon, JLabel.CENTER);
+        titlePnlFont = new Font("Serif", Font.BOLD, 36);
+        titleLbl.setFont(titlePnlFont);
         titleLbl.setVerticalTextPosition(JLabel.BOTTOM);
         titleLbl.setHorizontalTextPosition(JLabel.CENTER);
         titlePnl.add(titleLbl);
@@ -94,9 +95,9 @@ public class FortuneTellerFrame extends JFrame
     private void createFortunesPnl()
     {
         fortunesPnl = new JPanel();
-        fortunePnlFont = new Font("Verdana", Font.PLAIN, 14);
-        fortuneTA = new JTextArea(10, 50);
+        fortuneTA = new JTextArea(10, 90);
         fortuneTA.setEditable(false);
+        fortunePnlFont = new Font("Monospaced", Font.PLAIN, 14);
         fortuneTA.setFont(fortunePnlFont);
         scroller = new JScrollPane(fortuneTA);
 
@@ -105,12 +106,16 @@ public class FortuneTellerFrame extends JFrame
 
     private void createControlPnl()
     {
-        //Need to create a font
         controlPnl = new JPanel();
         controlPnl.setLayout(new GridLayout(1, 2));
 
+        controlPnlFont = new Font("SansSerif", Font.PLAIN, 16);
+
         fortuneBtn = new JButton("Read My Fortune!");
+        fortuneBtn.setFont(controlPnlFont);
+
         quitBtn = new JButton("Quit");
+        quitBtn.setFont(controlPnlFont);
 
         controlPnl.add(fortuneBtn);
         fortuneBtn.addActionListener((ActionEvent ae) ->
