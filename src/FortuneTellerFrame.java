@@ -4,8 +4,6 @@ import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.Random;
 
-//UML diagrams?
-
 /**
  * Creates an extension of the JFrame class called FortuneTellerFrame. Allows users to press a button in the GUI
  * to have a random fortune generated for them.
