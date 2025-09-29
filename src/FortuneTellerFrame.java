@@ -67,7 +67,7 @@ public class FortuneTellerFrame extends javax.swing.JFrame
     //This button allows the user to quit the GUI program
     JButton quitBtn;
 
-    //This FortuneTellerFrame sets the title, size, visibility, and default close operation of FortuneTellerFrame; it also puts the main panel inside the JFrame and the other panels inside the main panel and establishes the fortune options
+    //This constructor sets the title, size, visibility, and default close operation of FortuneTellerFrame; it also puts the main panel inside the JFrame and the other panels inside the main panel and establishes the fortune options
     public FortuneTellerFrame()
     {
         super("Fortune Teller");
